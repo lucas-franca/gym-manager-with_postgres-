@@ -4,7 +4,7 @@ const { date } = require("../../lib/utils");
 module.exports = {
   all(callback){
     db.query(`SELECT * FROM instructors`, function(err, results){
-      if(err) return res.send("Database error!")
+      if(err) throw `Database error! ${err}`;
 
       callback(results.rows)
     })
@@ -32,7 +32,7 @@ module.exports = {
       ]
     
       db.query(query, values, function(err, results){
-        if(err) return res.send("Database error!")
+        if(err) throw `Database error! ${err}`;
 
         callback(results.rows[0]);
       })  
@@ -42,7 +42,7 @@ module.exports = {
               FROM instructors
               WHERE id = $1`, [id], function(err, results){
               
-              if(err) return res.send("Database error!")
+              if(err) throw `Database error! ${err}`;
 
               callback(results.rows[0])
     })
@@ -68,7 +68,7 @@ module.exports = {
     ];
 
     db.query(query, values, function(err, results){
-      if(err) return res.send("Database error!");
+      if(err) throw `Database error! ${err}`;
 
       callback()
     })
