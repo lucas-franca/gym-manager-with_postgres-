@@ -44,9 +44,9 @@ let elements = ""
 
 for (let page of pages){
   if(String(page).includes("...")){
-    elements += `<a href="?page=${page}">${page}</a>`
-  }else{
     elements += `<span>${page}</span>`
+  }else{
+    elements += `<a href="?page=${page}">${page}</a>`
   }
 }
 
