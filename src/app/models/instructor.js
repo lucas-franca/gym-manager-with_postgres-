@@ -57,7 +57,6 @@ module.exports = {
       services=($5)
     WHERE ID = $6
     `
-
     const values = [
       data.avatar_url,
       data.name,
@@ -72,5 +71,13 @@ module.exports = {
 
       callback()
     })
+  },
+  delete(id, callback){
+    db.query(`DELETE FROM instructors WHERE id = $1`, [id], function(err, results){
+      if(err) throw `Database error! ${err}`;
+
+      return callback()
+    })
+      
   }
 }
